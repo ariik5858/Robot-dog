@@ -1,0 +1,5 @@
+﻿"TibiaLength"= 5in
+"TibiaRadius"= 0.3in
+"TibiaDistFromCentre"= "TibiaLength" / 2
+"TibiaThickness"= 0.5in
+"HoleRadius"= 0.2in
