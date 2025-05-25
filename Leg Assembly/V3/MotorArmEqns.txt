@@ -1,3 +1,0 @@
-﻿"Length"= 55mm
-"Radius"= 10mm
-"Thickness"= 20mm
