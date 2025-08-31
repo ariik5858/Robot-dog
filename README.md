@@ -18,8 +18,8 @@ This project has been divided into two parts:
 - Higher-level control and autonomy (e.g., gait generation, stability, navigation) 
 
 ## Contributors
-Kohei Ariizumi
-Jacko Chan (github)
+- Kohei Ariizumi
+- Jacko Chan (github)
 
 ## Roadmap
 - [ ] Mechanical
