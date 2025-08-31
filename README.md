@@ -4,17 +4,20 @@ A robot dog that I might finish
 ## Background
 I wanted to make a robot dog for a very long time, so I am starting now.
 
-## Status
-Right now I am just modelling the leg.
+## Project Structure
+This project has been divided into two parts: Mechanical and Software
+### Mechanical
+- Includes part/assembly designs
+- To be included:
+  - external parts bought (in txt)
+### Software
+- To be worked on...
+- To be included:
+  - driver code
+  - middleware
+  - autonomy stuff (I think this is the correct terminology)
 
 ## To Do
-Start the weekend of 21
-- Create body plate
-  - Hip assembly - Jacko
-  - plate - Kohei
-- Mirror legs - Kohei
-- Finish V1 body assembly - Together
-
 long weekend 28
 - Parametrics - KOhei
 - Simulations - Jacko
