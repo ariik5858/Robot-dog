@@ -13,11 +13,7 @@ This project has been divided into two parts:
 ### 💻 Software  
 - Low-level driver code for actuators and sensors  
 - Middleware for communication between hardware and higher-level logic  
-- Higher-level control and autonomy (e.g., gait generation, stability, navigation) 
-
-## Contributors
-- Kohei Ariizumi
-- Jacko Chan (github)
+- Higher-level control and autonomy (e.g., gait generation, stability, navigation)
 
 ## Roadmap
 - [ ] Mechanical
