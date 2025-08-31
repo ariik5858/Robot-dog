@@ -6,27 +6,30 @@ A robot dog that I might finish
 I wanted to make a robot dog for a very long time, so I am starting now.
 
 ## Project Structure
-This project has been divided into two parts: Mechanical and Software
-### Mechanical
-- Includes part/assembly designs
-- To be included:
-  - external parts bought (in txt)
-### Software
-- To be worked on...
-- To be included:
-  - driver code
-  - middleware
-  - autonomy stuff (I think this is the correct terminology)
+This project has been divided into two parts:
+### 🔧 Mechanical  
+- CAD models of individual parts and assemblies  
+- Bill of materials (list of external components purchased)  
+- Notes on fabrication and assembly  
 
-## To Do
-long weekend 28
-- Parametrics - KOhei
-- Simulations - Jacko
-- Analyze if dimension are good - Together
-- order stuff
-- assemble
+### 💻 Software  
+- Low-level driver code for actuators and sensors  
+- Middleware for communication between hardware and higher-level logic  
+- Higher-level control and autonomy (e.g., gait generation, stability, navigation) 
 
-Future - but need to discuss the board and how are we are going to do this
-- Code and electronics
-- servo driver
-- stm32 (options)
+## Contributors
+Kohei Ariizumi
+Jacko Chan (github)
+
+## Roadmap
+- [ ] Mechanical
+  - [x] Mechanical Design
+  - [ ] Assembly
+- [ ] Software
+  - [ ] Driver code
+    - [ ] IK
+    - [ ] Simulations
+    - [ ] Determine if code will be on Arduino or STM32
+  - [ ] Implement Basic Locomotion code
+  - [ ] Autonomy
+    - [ ] ROS2 (will need to buy Pi and cameras)
