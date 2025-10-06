@@ -21,3 +21,9 @@ const float gamma1 = 85 * DEG_TO_RAD;  // Convert degrees to radians
 const float H_PI = 1.5707963267948966;
 
 void ik(float x, float y, float z, bool side, float &theta1, float &theta2, float &theta3);
+
+static inline float clampf(float num, float lo, float hi);
+float clamp(float num);
+static inline float safe_acos(float t) { return acosf(clampf(t, -1.0f, 1.0f)); }
+static inline float safe_asin(float t) { return asinf(clampf(t, -1.0f, 1.0f)); }
+

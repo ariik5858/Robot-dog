@@ -1,8 +1,9 @@
-#include <Wire.h>
 #include <Adafruit_PWMServoDriver.h>
-#include "utils.h"
-#include "leg.h"
+#include <Wire.h>
+
 #include "Arduino.h"
+#include "leg.h"
+#include "utils.h"
 
 LegController control;
 
@@ -16,7 +17,7 @@ void setup() {
   float theta2 = 0;
   float theta3 = 0;
 
-  ik(0, 0, -100, false, theta1, theta2, theta3);
+  ik(0, 50.7, 60, true, theta1, theta2, theta3);
 
   Serial.println("Start up test");
   control.startUp();

@@ -1,7 +1,8 @@
 #include <Adafruit_PWMServoDriver.h>
+
 #include "Arduino.h"
-#include "utils.h"
 #include "leg.h"
+#include "utils.h"
 
 Adafruit_PWMServoDriver myServo(0x40);
 

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "utils.h"
 
 void ik(float x, float y, float z, bool side, float &theta1, float &theta2, float &theta3) {
@@ -7,10 +8,10 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   float Ryz = sqrtf(y * y + z * z);
   Serial.print(F("Ryz = ")); Serial.println(Ryz);
 
-  float alpha1 = acos(L1 / Ryz);
+  float alpha1 = safe_acos(L1 / Ryz);
   Serial.print(F("alpha1 = ")); Serial.println(alpha1 * RAD_TO_DEG);
 
-  float alpha2 = atan(y / z);
+  float alpha2 = atan2f(y, z);
   Serial.print(F("alpha2 = ")); Serial.println(alpha2 * RAD_TO_DEG);
 
   float phi = alpha1 + alpha2;
@@ -30,10 +31,10 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   float b1 = sqrt(x * x + z_prime * z_prime);
   Serial.print(F("b1 = ")); Serial.println(b1);
 
-  float alpha3_prime = atan(abs(z_prime) / abs(x));
+  float alpha3_prime = atan2f(abs(z_prime), abs(x));
   Serial.print(F("alpha3' = ")); Serial.println(alpha3_prime * RAD_TO_DEG);
 
-  float phi1 = atan(d2z / d2x);
+  float phi1 = atan2f(d2z, d2x);
   Serial.print(F("phi1 = ")); Serial.println(phi1 * RAD_TO_DEG);
 
   float alpha4 = phi1 + (PI - phi1);
@@ -45,13 +46,13 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   float b2 = sqrt(d2 * d2 + b1 * b1 - 2 * d2 * b1);
   Serial.print(F("b2 = ")); Serial.println(b2);
 
-  float alpha5 = asin((sin(alpha4) / b2) * b1);
+  float alpha5 = safe_asin((sin(alpha4) / b2) * b1);
   Serial.print(F("alpha5 = ")); Serial.println(alpha5 * RAD_TO_DEG);
 
-  float alpha6 = acos((L3 * L3 + L5 * L5 - b2 * b2) / (2 * L3 * L5));
+  float alpha6 = safe_acos((L3 * L3 + L5 * L5 - b2 * b2) / (2 * L3 * L5));
   Serial.print(F("alpha6 = ")); Serial.println(alpha6 * RAD_TO_DEG);
 
-  float alpha7 = asin((sin(alpha6) / b2) * L3);
+  float alpha7 = safe_asin((sin(alpha6) / b2) * L3);
   Serial.print(F("alpha7 = ")); Serial.println(alpha7 * RAD_TO_DEG);
 
   float phi2 = alpha7 + alpha5;
@@ -63,10 +64,10 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   float b3 = sqrt(L4 * L4 + L5 * L5 - 2 * L4 * L5 * cos(alpha8));
   Serial.print(F("b3 = ")); Serial.println(b3);
 
-  float alpha9 = asin((sin(alpha8) / b3) * L4);
+  float alpha9 = safe_asin((sin(alpha8) / b3) * L4);
   Serial.print(F("alpha9 = ")); Serial.println(alpha9 * RAD_TO_DEG);
 
-  float alpha10 = acos((L8 * L8 + b3 * b3 - L6 * L6) / (2 * L8 * b3));
+  float alpha10 = safe_acos((L8 * L8 + b3 * b3 - L6 * L6) / (2 * L8 * b3));
   Serial.print(F("alpha10 = ")); Serial.println(alpha10 * RAD_TO_DEG);
 
   float phi3 = alpha10 + alpha9;
@@ -78,10 +79,10 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   float b4 = sqrt(L8 * L8 + d2 * d2 - 2 * L8 * d2 * cos(alpha11));
   Serial.print(F("b4 = ")); Serial.println(b4);
 
-  float alpha12 = asin((sin(alpha11) / b4) * L8);
+  float alpha12 = safe_asin((sin(alpha11) / b4) * L8);
   Serial.print(F("alpha12 = ")); Serial.println(alpha12 * RAD_TO_DEG);
 
-  float alpha13 = acos((L10 * L10 + b4 * b4 - L9 * L9) / (2 * L10 * b4));
+  float alpha13 = safe_acos((L10 * L10 + b4 * b4 - L9 * L9) / (2 * L10 * b4));
   Serial.print(F("alpha13 = ")); Serial.println(alpha13 * RAD_TO_DEG);
   
   theta2 = (phi1 + alpha12 + alpha13) - H_PI;
@@ -96,4 +97,16 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   Serial.print(F("theta2 = ")); Serial.println(theta2);
   Serial.print(F("theta3 = ")); Serial.println(theta3);
   Serial.println(F("=== IK Debug End ==="));
+}
+static inline float clampf(float num, float lo, float hi) {
+  if (num < lo) return lo;
+  if (num > hi) return hi;
+  return num;
+}
+
+float clamp(float num) {
+  if (num < -1.0f || num > 1.0f) {
+    Serial.println(F("Value out of range"));
+  }
+  return clampf(num, -1.0f, 1.0f);
 }
