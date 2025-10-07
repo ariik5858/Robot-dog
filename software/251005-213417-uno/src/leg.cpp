@@ -39,11 +39,28 @@ Leg& LegController::getLeg(int legNum) {
 }
 
 void LegController::startUp() {
+  Serial.println("min angles");
   for (int i = 0; i < 4; i++) {
     Leg &leg = legs[i];
     myServo.setPWM(leg.pin1, 0, angleToPulse(90));
     myServo.setPWM(leg.pin2, 0, angleToPulse(90));
-    myServo.setPWM(leg.pin3, 0, angleToPulse(180));
+    myServo.setPWM(leg.pin3, 0, angleToPulse(135));
   }
-  delay(10);
+  delay(1000);
+  Serial.println("max angles");
+  for (int i = 0; i < 4; i++) {
+    Leg &leg = legs[i];
+    myServo.setPWM(leg.pin1, 0, angleToPulse(180));
+    myServo.setPWM(leg.pin2, 0, angleToPulse(180));
+    myServo.setPWM(leg.pin3, 0, angleToPulse(90));
+  }
+  delay(1000);
+  Serial.println("min angles");
+  for (int i = 0; i < 4; i++) {
+    Leg &leg = legs[i];
+    myServo.setPWM(leg.pin1, 0, angleToPulse(90));
+    myServo.setPWM(leg.pin2, 0, angleToPulse(90));
+    myServo.setPWM(leg.pin3, 0, angleToPulse(135));
+  }
+  delay(1000);
 }

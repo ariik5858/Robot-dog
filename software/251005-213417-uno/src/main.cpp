@@ -8,6 +8,7 @@
 LegController control;
 
 void setup() {
+  Wire.begin();
   Serial.begin(9600);
   myServo.begin();
   myServo.setPWMFreq(60);  // Analog servos run at ~60 Hz
@@ -24,7 +25,12 @@ void setup() {
 }
 
 void loop() {
-  
+  // control.setLegPos(0, 0, 50.7, 60);
+  // delay(1000);
+  control.setLegPos(0, 0, 50.7, 0);
+  delay(1000);
+  control.setLegPos(0, 0, 50.7, 200);
+  delay(1000);
 }
 
 // myServo.setPWM(0,0,angleToPulse(135)); // theta3
