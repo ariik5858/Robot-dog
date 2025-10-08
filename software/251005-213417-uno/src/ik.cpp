@@ -30,7 +30,7 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   Serial.print(F("z' = ")); Serial.println(z_prime);
   
   // -- xz plane calculations -- //
-	float Rxz_prime = sqrtf(y * y + z * z);
+	float Rxz_prime = sqrtf(x * x + z_prime * z_prime);
 	float d2 = sqrt(d2x * d2x + d2z * d2z);
 	Serial.print(F("d2 = ")); Serial.println(d2);
   float phi1 = atan2f(d2z, d2x);
