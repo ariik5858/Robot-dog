@@ -78,7 +78,9 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
 
   float alpha13 = safe_acos((L10 * L10 + b3 * b3 - L9 * L9) / (2 * L10 * b3));
   Serial.print(F("alpha13 = ")); Serial.println(alpha13 * RAD_TO_DEG);
-  theta2 = (phi1 + alpha12 + alpha13) - H_PI;
+  
+	theta2 = (phi1 + alpha12 + alpha13) - H_PI;
+	theta3 = phi1 + phi2;
 
   // convert all thetas to degrees
   theta1 = theta1 * RAD_TO_DEG;
