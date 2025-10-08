@@ -14,7 +14,7 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   float alpha2 = atan2f(y, z);
   Serial.print(F("alpha2 = ")); Serial.println(alpha2 * RAD_TO_DEG);
 
-  float phi = alpha1 + alpha2;
+  float phi = abs(alpha1) + abs(alpha2);
   Serial.print(F("phi = ")); Serial.println(phi * RAD_TO_DEG);
   
   // for now the code will only look at the right side
