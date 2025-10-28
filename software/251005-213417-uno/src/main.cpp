@@ -29,7 +29,11 @@ void loop() {
   // delay(1000);
   control.setLegPos(0, 0, 50.7, 0);
   delay(1000);
-  control.setLegPos(0, 0, 50.7, 200);
+  control.setLegPos(0, 0, 50.7, -50);
+  delay(1000);
+  control.setLegPos(0, -50, 50.7, -50);
+  delay(1000);
+  control.setLegPos(0, -50, 50.7, 0);
   delay(1000);
 }
 

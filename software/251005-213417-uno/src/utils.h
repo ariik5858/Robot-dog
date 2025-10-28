@@ -28,7 +28,7 @@ static inline float clampf(float num, float lo, float hi) {
     if (num > hi) return hi;
     return num;
 }
-float clamp(float num);
+
 static inline float safe_acos(float t) { return acosf(clampf(t, -1.0f, 1.0f)); }
 static inline float safe_asin(float t) { return asinf(clampf(t, -1.0f, 1.0f)); }
 

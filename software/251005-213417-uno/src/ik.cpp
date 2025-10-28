@@ -14,18 +14,27 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   float alpha2 = atan2f(y, z);
   Serial.print(F("alpha2 = ")); Serial.println(alpha2 * RAD_TO_DEG);
 
-  float phi = abs(alpha1) + abs(alpha2);
-  Serial.print(F("phi = ")); Serial.println(phi * RAD_TO_DEG);
-  
-  // for now the code will only look at the right side
-  theta1 = phi; // right side theta
-  Serial.print(F("theta1 = ")); Serial.println(theta1 * RAD_TO_DEG);
+  float y_prime;
+  float z_prime;
+  float rotate_angle;
 
-  float rotate_angle = theta1 - H_PI;
-  
   // -- rotation about x-axis -- //
-  float y_prime = y * cos(rotate_angle) + z * sin(rotate_angle);
-  float z_prime = -y * sin(rotate_angle) + z * cos(rotate_angle);
+  if (side) {
+    theta1 = alpha1 - alpha2; // right side theta
+    Serial.print(F("theta1 = ")); Serial.println(theta1 * RAD_TO_DEG);
+    rotate_angle = theta1 - H_PI;
+    // CW rotation for Right
+    y_prime = y * cos(rotate_angle) + z * sin(rotate_angle);
+    z_prime = -y * sin(rotate_angle) + z * cos(rotate_angle);
+  } else {
+    theta1 = alpha1 - alpha2; // TODO: change this for right
+    Serial.print(F("theta1 = ")); Serial.println(theta1 * RAD_TO_DEG);
+    rotate_angle = theta1 - H_PI;
+    // CCW rotation for Left
+    y_prime = y * cos(rotate_angle) + z * sin(rotate_angle); // TODO: update the rotations
+    z_prime = -y * sin(rotate_angle) + z * cos(rotate_angle);
+  }
+  
   Serial.print(F("y' = ")); Serial.println(y_prime);
   Serial.print(F("z' = ")); Serial.println(z_prime);
   
@@ -71,7 +80,7 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   Serial.print(F("alpha11 = ")); Serial.println(alpha11 * RAD_TO_DEG);
 
 	float b3 = sqrt(d2 * d2 + L8 * L8 - 2 * d2 * L8 * cos(alpha11));
-  Serial.print(F("b3 = ")); Serial.println(b2);
+  Serial.print(F("b3 = ")); Serial.println(b3);
 
   float alpha12 = safe_asin((sin(alpha11) / b3) * L8);
   Serial.print(F("alpha12 = ")); Serial.println(alpha12 * RAD_TO_DEG);
@@ -87,15 +96,16 @@ void ik(float x, float y, float z, bool side, float &theta1, float &theta2, floa
   theta2 = theta2 * RAD_TO_DEG;
   theta3 = theta3 * RAD_TO_DEG;
 
+  if (theta1 > 180) theta1 = 180;
+  if (theta2 > 180) theta2 = 180;
+  if (theta3 > 180) theta3 = 180;
+
+  if (theta1 < 0) theta1 = 0;
+  if (theta2 < 0) theta2 = 0;
+  if (theta3 < 0) theta3 = 0;
+
   Serial.print(F("theta1 = ")); Serial.println(theta1);
   Serial.print(F("theta2 = ")); Serial.println(theta2);
   Serial.print(F("theta3 = ")); Serial.println(theta3);
   Serial.println(F("=== IK Debug End ==="));
-}
-
-float clamp(float num) {
-  if (num < -1.0f || num > 1.0f) {
-    Serial.println(F("Value out of range"));
-  }
-  return clampf(num, -1.0f, 1.0f);
 }
