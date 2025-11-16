@@ -1,6 +1,8 @@
 # Robot Dog
 A robot dog that I might finish
-<img width="985" height="785" alt="image" src="https://github.com/user-attachments/assets/c3ec39c2-5ee8-447b-877c-b2ec503ed40d" />
+<img width="821" height="606" alt="Screenshot 2025-11-16 164121" src="https://github.com/user-attachments/assets/172e2055-e75b-4f5a-baee-9d20119a87a8" />
+
+
 
 ## Background
 I wanted to make a robot dog for a very long time, so I am starting now.
