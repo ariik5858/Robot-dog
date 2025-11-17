@@ -1,6 +1,7 @@
 # Robot Dog
 A robot dog that I might finish
-<img width="821" height="606" alt="Screenshot 2025-11-16 164121" src="https://github.com/user-attachments/assets/172e2055-e75b-4f5a-baee-9d20119a87a8" />
+<img width="1040" height="705" alt="image" src="https://github.com/user-attachments/assets/e7d69f0c-f842-441f-b898-59a665e0857c" />
+
 
 
 
