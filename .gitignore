@@ -5,5 +5,8 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+
 __pycache__/
+*.pyc
+
 /Software/251005-213417-uno/.gitignore
