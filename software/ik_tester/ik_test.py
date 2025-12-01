@@ -7,10 +7,10 @@ class IKCalc:
         self.z_goal = z_goal
         
         # link lengths / offsets
-        self.a1 = 25.5
-        self.a2 = 100
-        self.a3 = 100.21
-        self.d1 = 50.7
+        self.a1 = 25.5 #d2z
+        self.a2 = 100 #L5
+        self.a3 = 100.21 #L3
+        self.d1 = 50.7 #L1
 
         self.psy = math.radians(47.5)
 
@@ -22,8 +22,8 @@ class IKCalc:
         self.L9 = 60
         self.L10 = 24.5
 
-        self.d2x = 19.3
-        self.d2y = 25.5
+        self.d2x = 19.3 
+        self.d2y = 25.5 #d2z
         self.d2 = math.hypot(self.d2x, self.d2y)
 
         self.x_prime = 0.0
@@ -158,7 +158,7 @@ class IKCalc:
         return 0
 
 if __name__ == "__main__":
-    ik = IKCalc(-10,50.7,0)
+    ik = IKCalc(-50,50.7,0)
     ik.calculate(True,True)
     ik.calculate(True,False)
     ik.calculate(False,True)
