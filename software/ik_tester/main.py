@@ -78,7 +78,7 @@ def fk_joint_frames_for_second_arm(theta1, theta2): # TODO: we will use theta1 c
 # ---------------- Interactive GUI ---------------- #
 def main():
     # initial goal
-    x0, y0, z0 = -174.71, 50.7, 0
+    x0, y0, z0 = -50, 50.7, 0
     mode1 = True   # theta1 branch
     mode2 = True   # elbow branch
 
@@ -168,7 +168,7 @@ def main():
 
     s_x = Slider(ax_x, "x", -200.0, 200.0, valinit=x0)
     s_y = Slider(ax_y, "y", -200.0, 200.0, valinit=y0)
-    s_z = Slider(ax_z, "z", 0.0, 200.0, valinit=z0)
+    s_z = Slider(ax_z, "z", -200.0, 200.0, valinit=z0)
 
     # radio buttons for modes
     ax_mode1 = plt.axes([0.02, 0.55, 0.15, 0.15], facecolor=axcolor)
