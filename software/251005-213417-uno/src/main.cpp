@@ -40,6 +40,14 @@ void loop() {
   Serial.print(" ");
   Serial.println(control.getLeg(0).theta3);
 
+  control.setLegPos(0, -50, 70, -25);   delay(5000);
+  Serial.print("Angles3: ");
+  Serial.print(control.getLeg(0).theta1);
+  Serial.print(" ");
+  Serial.print(control.getLeg(0).theta2);
+  Serial.print(" ");
+  Serial.println(control.getLeg(0).theta3);
+
   control.setLegPos(0, -25, 50.7,   0);   delay(5000);
   Serial.print("Angles2: ");
   Serial.print(control.getLeg(0).theta1);

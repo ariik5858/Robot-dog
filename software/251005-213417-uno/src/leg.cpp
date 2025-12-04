@@ -75,7 +75,7 @@ void LegController::ikTrue(Leg *leg, int side, float x, float y, float z) {
     float t2 = (leg->theta2 - HALF_PI);
     float t3 = (2*PI - abs(phi1 + phi3 + phi4));
 
-    t1 = wrap(t1);
+    t1 = PI - wrap(t1);
     t2 = wrap(t2);
     t3 = PI - wrap(t3);
 
