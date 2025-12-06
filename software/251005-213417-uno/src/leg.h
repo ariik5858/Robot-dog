@@ -27,8 +27,8 @@ public:
   LegController();
   void startUp();
   void setLegPos(int legNum, float x, float y, float z);
-  void ik(Leg *leg, int side, float x, float y, float z);
-  void ikTrue(Leg *leg, int side, float x, float y, float z);
+  void ik(Leg &leg, int side, float x, float y, float z);
+  void ikTrue(Leg &leg, int side, float x, float y, float z);
   Leg getLeg(int legNum);
 private:
   Leg legs[4];
