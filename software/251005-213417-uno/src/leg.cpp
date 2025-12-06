@@ -24,8 +24,9 @@ void LegController::ik(Leg &leg, int side, float x, float y, float z) {
   float phi = atan2(y, x);
   float root = sqrt(x*x + y*y - L1*L1);
 
-  if(side) {
-    // Theta 1
+  if(!side) L1 = -L1;
+
+  // Theta 1
     float t1 = phi - atan2(L1, -root);
     if (t1 < 0) {
       if (abs(t1) > PI){
@@ -50,7 +51,6 @@ void LegController::ik(Leg &leg, int side, float x, float y, float z) {
     float rho = atan2(k2, k1);
     float psi = atan2(z, r);
     leg.theta2 = psi - rho;
-  } else {}
 }
 
 void LegController::ikTrue(Leg &leg, int side, float x, float y, float z) {
@@ -75,9 +75,15 @@ void LegController::ikTrue(Leg &leg, int side, float x, float y, float z) {
     float t2 = (leg.theta2 - HALF_PI);
     float t3 = (2*PI - abs(phi1 + phi3 + phi4));
 
-    t1 = PI - wrap(t1);
-    t2 = wrap(t2);
-    t3 = PI - wrap(t3);
+    if (!side) {
+      t1 = wrap(t1);
+      t2 = wrap(t2);
+      t3 = wrap(t3);
+    } else {
+      t1 = PI - wrap(t1);
+      t2 = wrap(t2);
+      t3 = PI - wrap(t3);
+    }
 
     leg.theta1 = t1 * RAD_TO_DEG;
     leg.theta2 = t2 * RAD_TO_DEG;
