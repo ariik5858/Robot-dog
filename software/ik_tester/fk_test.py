@@ -18,7 +18,7 @@ def dh(a, d, alpha, theta):
 
 def fk_joint_frames(theta1, theta2, theta3):
     """Return positions of joints J0..J4 (5x3 array)."""
-    a1, a2, a3, d1 = 25.5, 100.0, 100.21, -50.7
+    a1, a2, a3, d1 = 25.5, 100.0, 100.21, 50.7
 
     A1 = dh(0.0,   0.0,  0.0,         theta1)
     A2 = dh(a1,    d1,  -math.pi/2,   theta2)

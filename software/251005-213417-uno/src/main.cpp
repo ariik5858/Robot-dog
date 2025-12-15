@@ -32,7 +32,8 @@ void loop() {
 
 
   // Below is a test path for the leg to follow
-  control.setLegPos(0, -25, 50.7, -25);   delay(5000);
+  delay(1000);
+  control.setLegPos(0, -25, 50.7, 0);
   Serial.print("Angles1: ");
   Serial.print(control.getLeg(0).theta1);
   Serial.print(" ");
@@ -40,7 +41,8 @@ void loop() {
   Serial.print(" ");
   Serial.println(control.getLeg(0).theta3);
 
-  control.setLegPos(0, -50, 70, -25);   delay(5000);
+  delay(1000);
+  control.setLegPos(0, -90, 50.7, 0);
   Serial.print("Angles3: ");
   Serial.print(control.getLeg(0).theta1);
   Serial.print(" ");
@@ -48,16 +50,18 @@ void loop() {
   Serial.print(" ");
   Serial.println(control.getLeg(0).theta3);
 
-  control.setLegPos(0, -25, 50.7,   0);   delay(5000);
-  Serial.print("Angles2: ");
+  delay(1000);
+  control.setLegPos(0, -90, 50.7, 50);
+  Serial.print("Angles1: ");
   Serial.print(control.getLeg(0).theta1);
   Serial.print(" ");
   Serial.print(control.getLeg(0).theta2);
   Serial.print(" ");
   Serial.println(control.getLeg(0).theta3);
 
-  control.setLegPos(0, -50, 50.7, -25);   delay(5000);
-  Serial.print("Angles3: ");
+  delay(1000);
+  control.setLegPos(0, -90, 50.7, -50);
+  Serial.print("Angles1: ");
   Serial.print(control.getLeg(0).theta1);
   Serial.print(" ");
   Serial.print(control.getLeg(0).theta2);

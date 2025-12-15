@@ -10,7 +10,7 @@ class IKCalc:
         self.a1 = 25.5 #d2z
         self.a2 = 100 #L5
         self.a3 = 100.21 #L3
-        self.d1 = -50.7 #L1
+        self.d1 = 50.7 #L1
 
         self.psy = math.radians(47.5)
 
@@ -90,6 +90,10 @@ class IKCalc:
         psi = math.atan2(self.z_prime, self.R)
 
         self.theta2 = psi - phi
+
+        if(self.theta2<0):
+            self.theta2 = self.theta2 + 2*math.pi
+
         return self.theta2
     
     def solve(self, mode1: bool, mode2: bool):
@@ -140,7 +144,7 @@ class IKCalc:
             theta_r2 = self._safe_acos(cos_theta_r2)
 
 
-            psy_2 = 2*self.psy
+            psy_2 = math.pi - 2*self.psy
 
             theta_l2 = (2*math.pi - self.theta2) - theta_r3 - theta_r2
             theta_l1 = psy_2 - theta_l2
@@ -154,6 +158,7 @@ class IKCalc:
 
 
             theta2_p = 2*math.pi - abs(phi1 + phi3 + phi4)
+            theta2_p = (math.pi - abs(self.theta3)) - ((2*math.pi - abs(self.theta2)) - math.pi/2) - math.radians(20) + math.pi/2
             return theta2_p
         return 0
 

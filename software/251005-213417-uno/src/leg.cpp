@@ -14,7 +14,7 @@ static uint16_t angleToPulse(int angleDeg) {
 
 LegController::LegController()
   : legs{
-      Leg(true,  0, 2, 1),    // leg 0
+      Leg(true,  0, 1, 2),    // leg 0
       Leg(true,  3, 4, 5),    // leg 1
       Leg(false, 6, 7, 8),    // leg 2
       Leg(false, 9,10,11)     // leg 3
@@ -25,7 +25,8 @@ void LegController::ik(Leg &leg, int side, float x, float y, float z) {
   float root = sqrt(x*x + y*y - L1*L1);
   float l;
 
-  if(!side) l = -L1;
+  l = L1;
+  // if(!side) l = -L1;
 
   // Theta 1
     float t1 = phi - atan2(l, -root);
@@ -52,6 +53,14 @@ void LegController::ik(Leg &leg, int side, float x, float y, float z) {
     float rho = atan2(k2, k1);
     float psi = atan2(z, r);
     leg.theta2 = psi - rho;
+    if (leg.theta2<0)
+    {
+        leg.theta2 += 2*PI;
+    }
+    
+    Serial.println(leg.theta1);
+    Serial.println(leg.theta2);
+    Serial.println(leg.theta3);
 }
 
 void LegController::ikTrue(Leg &leg, int side, float x, float y, float z) {
@@ -65,7 +74,7 @@ void LegController::ikTrue(Leg &leg, int side, float x, float y, float z) {
     float tR2 = cosTheta(L8, r, L6);
 
     float tL2 = (2*PI - leg.theta2) - tR3 - tR2;
-    float tL1 = 2*gamma - tL2;
+    float tL1 = (PI - 2*gamma) - tL2;
     float tR4 = PI - tL1 - phi2;
     float r2 = cosLawC(L8, d2, abs(tR4));
 
@@ -75,6 +84,7 @@ void LegController::ikTrue(Leg &leg, int side, float x, float y, float z) {
     float t1 = (leg.theta1 + HALF_PI);
     float t2 = (leg.theta2 - HALF_PI);
     float t3 = (2*PI - abs(phi1 + phi3 + phi4));
+    t3 = (PI - abs(leg.theta3)) - ((2*PI - abs(leg.theta2)) - HALF_PI) + 20*DEG_TO_RAD + HALF_PI;
 
     if (!side) {
       t1 = wrap(t1);
@@ -83,7 +93,7 @@ void LegController::ikTrue(Leg &leg, int side, float x, float y, float z) {
     } else {
       t1 = PI - wrap(t1);
       t2 = wrap(t2);
-      t3 = PI - wrap(t3);
+      t3 = wrap(t3);
     }
 
     leg.theta1 = t1 * RAD_TO_DEG;
@@ -115,7 +125,7 @@ void LegController::startUp() {
     Leg &leg = legs[i];
     myServo.setPWM(leg.pin1, 0, angleToPulse(90));
     myServo.setPWM(leg.pin2, 0, angleToPulse(90));
-    myServo.setPWM(leg.pin3, 0, angleToPulse(135));
+    myServo.setPWM(leg.pin3, 0, angleToPulse(90));
   }
   delay(1000);
   Serial.println("max angles");
@@ -123,15 +133,15 @@ void LegController::startUp() {
     Leg &leg = legs[i];
     myServo.setPWM(leg.pin1, 0, angleToPulse(180));
     myServo.setPWM(leg.pin2, 0, angleToPulse(180));
-    myServo.setPWM(leg.pin3, 0, angleToPulse(90));
+    myServo.setPWM(leg.pin3, 0, angleToPulse(180));
   }
   delay(1000);
-  Serial.println("min angles");
-  for (int i = 0; i < 4; i++) {
-    Leg &leg = legs[i];
-    myServo.setPWM(leg.pin1, 0, angleToPulse(90));
-    myServo.setPWM(leg.pin2, 0, angleToPulse(90));
-    myServo.setPWM(leg.pin3, 0, angleToPulse(135));
-  }
-  delay(1000);
+  // Serial.println("min angles");
+  // for (int i = 0; i < 4; i++) {
+  //   Leg &leg = legs[i];
+  //   myServo.setPWM(leg.pin1, 0, angleToPulse(90));
+  //   myServo.setPWM(leg.pin2, 0, angleToPulse(90));
+  //   myServo.setPWM(leg.pin3, 0, angleToPulse(90));
+  // }
+  // delay(1000);
 }
