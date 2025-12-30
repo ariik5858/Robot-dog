@@ -7,7 +7,7 @@
 
 LegController control;
 int angleDeg = 90;
-
+bool callibrate = true;
 void setup() {
   Wire.begin();
   Serial.begin(9600);
@@ -15,9 +15,16 @@ void setup() {
   myServo.setPWMFreq(60);  // Analog servos run at ~60 Hz
   delay(10);
 
-  Serial.println("Start up test");
-  control.startUp();
-  Serial.println("Start up test finish");
+  if (callibrate) {
+    Serial.println("Callibrating...");
+    control.callibrate();
+    Serial.println("Finished");
+  } else {
+    Serial.println("Starting up...");
+    control.startUp();
+    Serial.println("Beginning motion");
+  }
+  delay(1000);
 }
 
 void loop() {
@@ -30,41 +37,42 @@ void loop() {
     motors such that they follow this for every leg
   */
 
+  // control.forwardWalk();
 
   // Below is a test path for the leg to follow
-  delay(1000);
-  control.setLegPos(0, -25, 50.7, 0);
-  Serial.print("Angles1: ");
-  Serial.print(control.getLeg(0).theta1);
-  Serial.print(" ");
-  Serial.print(control.getLeg(0).theta2);
-  Serial.print(" ");
-  Serial.println(control.getLeg(0).theta3);
+  // delay(1000);
+  // control.setLegPos(0, -25, 50.7, 0);
+  // Serial.print("Angles1: ");
+  // Serial.print(control.getLeg(0).theta1);
+  // Serial.print(" ");
+  // Serial.print(control.getLeg(0).theta2);
+  // Serial.print(" ");
+  // Serial.println(control.getLeg(0).theta3);
 
-  delay(1000);
-  control.setLegPos(0, -90, 50.7, 0);
-  Serial.print("Angles3: ");
-  Serial.print(control.getLeg(0).theta1);
-  Serial.print(" ");
-  Serial.print(control.getLeg(0).theta2);
-  Serial.print(" ");
-  Serial.println(control.getLeg(0).theta3);
+  // delay(1000);
+  // control.setLegPos(0, -90, 50.7, 0);
+  // Serial.print("Angles3: ");
+  // Serial.print(control.getLeg(0).theta1);
+  // Serial.print(" ");
+  // Serial.print(control.getLeg(0).theta2);
+  // Serial.print(" ");
+  // Serial.println(control.getLeg(0).theta3);
 
-  delay(1000);
-  control.setLegPos(0, -90, 50.7, 50);
-  Serial.print("Angles1: ");
-  Serial.print(control.getLeg(0).theta1);
-  Serial.print(" ");
-  Serial.print(control.getLeg(0).theta2);
-  Serial.print(" ");
-  Serial.println(control.getLeg(0).theta3);
+  // delay(1000);
+  // control.setLegPos(0, -90, 50.7, 90);
+  // Serial.print("Angles1: ");
+  // Serial.print(control.getLeg(0).theta1);
+  // Serial.print(" ");
+  // Serial.print(control.getLeg(0).theta2);
+  // Serial.print(" ");
+  // Serial.println(control.getLeg(0).theta3);
 
-  delay(1000);
-  control.setLegPos(0, -90, 50.7, -50);
-  Serial.print("Angles1: ");
-  Serial.print(control.getLeg(0).theta1);
-  Serial.print(" ");
-  Serial.print(control.getLeg(0).theta2);
-  Serial.print(" ");
-  Serial.println(control.getLeg(0).theta3);
+  // delay(1000);
+  // control.setLegPos(0, -90, 50.7, -70);
+  // Serial.print("Angles1: ");
+  // Serial.print(control.getLeg(0).theta1);
+  // Serial.print(" ");
+  // Serial.print(control.getLeg(0).theta2);
+  // Serial.print(" ");
+  // Serial.println(control.getLeg(0).theta3);
 }

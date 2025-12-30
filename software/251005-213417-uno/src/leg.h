@@ -7,7 +7,14 @@
 #include <Adafruit_PWMServoDriver.h>
 
 constexpr int SERVOMIN = 150l; // Pulse length for 0° (adjust if needed)
-constexpr int SERVOMAX = 600l;  // Pulse length for 180° (adjust if needed)
+constexpr int SERVOMAX = 670l;  // Pulse length for 180° (adjust if needed)
+
+struct pos {
+  float x, y, z;
+};
+
+extern pos fwPathL[];
+extern pos fwPathR[];
 
 
 extern Adafruit_PWMServoDriver myServo;
@@ -25,10 +32,19 @@ struct Leg {
 class LegController {
 public:
   LegController();
+
+  // -- Callibration --
   void startUp();
+  void callibrate();
+
+  // -- motion --
+  void walk(int legNum, pos* path, int size);
+  void forwardWalk();
   void setLegPos(int legNum, float x, float y, float z);
   void ik(Leg &leg, int side, float x, float y, float z);
   void ikTrue(Leg &leg, int side, float x, float y, float z);
+  
+  // -- Getters --
   Leg getLeg(int legNum);
 private:
   Leg legs[4];

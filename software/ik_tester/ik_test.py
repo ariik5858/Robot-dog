@@ -10,7 +10,7 @@ class IKCalc:
         self.a1 = 25.5 #d2z
         self.a2 = 100 #L5
         self.a3 = 100.21 #L3
-        self.d1 = 50.7 #L1
+        self.d1 = -50.7 #L1
 
         self.psy = math.radians(47.5)
 

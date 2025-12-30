@@ -18,7 +18,7 @@ def dh(a, d, alpha, theta):
 
 def fk_joint_positions(theta1, theta2, theta3):
     """Return positions of joints J0..J4 (5x3 array)."""
-    a1, a2, a3, d1 = 25.5, 100.0, 100.21, 50.7
+    a1, a2, a3, d1 = 25.5, 100.0, 100.21, -50.7
 
     # DH table you used earlier
     A1 = dh(0.0,   0.0, 0.0,        theta1)
@@ -41,7 +41,7 @@ def fk_joint_positions(theta1, theta2, theta3):
 
 def fk_joint_frames(theta1, theta2, theta3):
     """Return positions of joints J0..J4 (5x3 array)."""
-    a1, a2, a3, d1 = 25.5, 100.0, 100.21, 50.7
+    a1, a2, a3, d1 = 25.5, 100.0, 100.21, -50.7
 
     A1 = dh(0.0,   0.0,  0.0,         theta1)
     A2 = dh(a1,    d1,  -math.pi/2,   theta2)
@@ -60,7 +60,7 @@ def fk_joint_frames(theta1, theta2, theta3):
 
 def fk_joint_frames_for_second_arm(theta1, theta2): # TODO: we will use theta1 calculated from ik_test and use theta3_prime function to get theta2
     """Return positions of joints J0..J4 (5x3 array)."""
-    a1, a2, d1 = 25.5, 24.5, 50.7
+    a1, a2, d1 = 25.5, 24.5, -50.7
 
     A1 = dh(0.0,   0.0,  0.0,         theta1)
     A2 = dh(0,    d1,  -math.pi/2,   theta2)
@@ -78,7 +78,7 @@ def fk_joint_frames_for_second_arm(theta1, theta2): # TODO: we will use theta1 c
 # ---------------- Interactive GUI ---------------- #
 def main():
     # initial goal
-    x0, y0, z0 = -50, 50.7, 0
+    x0, y0, z0 = -50, -50.7, 0
     mode1 = True   # theta1 branch
     mode2 = True   # elbow branch
 
