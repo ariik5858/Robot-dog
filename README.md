@@ -1,8 +1,6 @@
 # Robot Dog
 Name Pending
-<img width="917" height="727" alt="image" src="https://github.com/user-attachments/assets/594273c0-49b6-49cf-9b28-ebbc3ea21915" />
-
-
+<img width="912" height="694" alt="image" src="https://github.com/user-attachments/assets/0c26094b-ad28-411b-b81b-450dd36ffb4f" />
 
 
 
@@ -10,7 +8,7 @@ Name Pending
 I wanted to make a robot dog for a very long time, so I am starting now.
 
 ## Project Structure
-This project has been divided into two parts:
+This project has been divided into three parts:
 ### Mechanical  
 - CAD models of individual parts and assemblies  
 
@@ -19,14 +17,21 @@ This project has been divided into two parts:
 - Middleware for communication between hardware and higher-level logic  
 - Higher-level control and autonomy (e.g., gait generation, stability, navigation)
 
+### Hardware
+- Power Distribution Board
+- BMS
+
 ## Roadmap
-- [ ] Mechanical
+- [x] Mechanical
   - [x] Mechanical Design
-  - [ ] Assembly
+  - [x] Assembly
 - [ ] Software
   - [x] Driver code
     - [x] IK
     - [x] Determine if code will be on Arduino or STM32
-  - [ ] Implement Basic Locomotion code
+  - [x] Implement Basic Locomotion code
   - [ ] Autonomy
     - [ ] ROS2 (will need to buy Pi and cameras)
+- [ ] Hardware
+  - [ ] BMS
+  - [ ] Power Distribution Board
